@@ -28,7 +28,7 @@ lib.ssMetadata = [];
 (lib.Base = function() {
 	this.initialize(img.Base);
 }).prototype = p = new cjs.Bitmap();
-p.nominalBounds = new cjs.Rectangle(0,0,1169,670);
+p.nominalBounds = new cjs.Rectangle(0,0,3170,1932);
 
 
 (lib.BlueCar = function() {
@@ -962,12 +962,12 @@ if (reversed == null) { reversed = false; }
 	this.instance = new lib.vehicles_black_suv_mc();
 	this.instance.setTransform(414.3,-164.95,1,1,0,0,0,50.5,44.5);
 
-	this.timeline.addTween(cjs.Tween.get(this.instance).to({x:-1375.7,y:865.75},600).wait(1));
+	this.timeline.addTween(cjs.Tween.get(this.instance).to({x:-1338.9,y:845.35},600).wait(1));
 
 	this._renderFirstFrame();
 
 }).prototype = p = new cjs.MovieClip();
-p.nominalBounds = new cjs.Rectangle(-1426.2,-209.4,1891,1119.7);
+p.nominalBounds = new cjs.Rectangle(-1389.4,-209.4,1854.2,1099.3);
 
 
 (lib.vehicles_blue_car_animation = function(mode,startPosition,loop,reversed) {
@@ -983,14 +983,14 @@ if (reversed == null) { reversed = false; }
 
 	// Layer_1
 	this.instance = new lib.vehicles_blue_car_mc();
-	this.instance.setTransform(-286.6,165.4);
+	this.instance.setTransform(-253.9,149.1);
 
 	this.timeline.addTween(cjs.Tween.get(this.instance).to({x:1521.3,y:-862.55},599).wait(1));
 
 	this._renderFirstFrame();
 
 }).prototype = p = new cjs.MovieClip();
-p.nominalBounds = new cjs.Rectangle(-286.6,-862.5,1899.9,1089.9);
+p.nominalBounds = new cjs.Rectangle(-253.9,-862.5,1867.2,1073.6);
 
 
 (lib.red_glow_animation = function(mode,startPosition,loop,reversed) {
@@ -1574,7 +1574,7 @@ if (reversed == null) { reversed = false; }
 
 	this._renderFirstFrame();
 
-}).prototype = getMCSymbolPrototype(lib.vehicles_mc, new cjs.Rectangle(-937.6,-621.4,1764.4,1185.8), null);
+}).prototype = getMCSymbolPrototype(lib.vehicles_mc, new cjs.Rectangle(-904.9,-621.4,1731.6999999999998,1169.5), null);
 
 
 (lib.radial_circles_multi_mc = function(mode,startPosition,loop,reversed) {
@@ -2080,7 +2080,7 @@ if (reversed == null) { reversed = false; }
 
 	// Base
 	this.instance_5 = new lib.Base();
-	this.instance_5.setTransform(79,99,0.7812,0.7812);
+	this.instance_5.setTransform(26,97,0.391,0.391);
 
 	this.timeline.addTween(cjs.Tween.get(this.instance_5).wait(1));
 
@@ -2097,59 +2097,59 @@ lib.properties = {
 	color: "#070935",
 	opacity: 1.00,
 	manifest: [
-		{src:"images/Base.png", id:"Base"},
-		{src:"images/BlueCar.png", id:"BlueCar"},
-		{src:"images/BlueEVCar.png", id:"BlueEVCar"},
-		{src:"images/DAS_Bushes.png", id:"DAS_Bushes"},
-		{src:"images/DAS_OFF_Base.png", id:"DAS_OFF_Base"},
-		{src:"images/DAS_ON_Bldg_top.png", id:"DAS_ON_Bldg_top"},
-		{src:"images/DAS_ON_Glow.png", id:"DAS_ON_Glow"},
-		{src:"images/DAS_ON_Inside.png", id:"DAS_ON_Inside"},
-		{src:"images/DC_base_ON.png", id:"DC_base_ON"},
-		{src:"images/DC_Ground.png", id:"DC_Ground"},
-		{src:"images/DC_ON_bldg_top.png", id:"DC_ON_bldg_top"},
-		{src:"images/DC_ON_Glow.png", id:"DC_ON_Glow"},
-		{src:"images/Emergency_Outside_Front.png", id:"Emergency_Outside_Front"},
-		{src:"images/Emergency_Responder_Ground.png", id:"Emergency_Responder_Ground"},
-		{src:"images/ER_OFF_Bldg.png", id:"ER_OFF_Bldg"},
-		{src:"images/ER_ON_bldg_shadow.png", id:"ER_ON_bldg_shadow"},
-		{src:"images/ER_ON_GLOW.png", id:"ER_ON_GLOW"},
-		{src:"images/ER_ON_RED_GLOW.png", id:"ER_ON_RED_GLOW"},
-		{src:"images/ER_Trees_Back.png", id:"ER_Trees_Back"},
-		{src:"images/EV_Base.png", id:"EV_Base"},
-		{src:"images/EV_ON_Glow.png", id:"EV_ON_Glow"},
-		{src:"images/EV_ON_Shadow.png", id:"EV_ON_Shadow"},
-		{src:"images/EV_ON_Station.png", id:"EV_ON_Station"},
-		{src:"images/EV_ON_Station_Glow.png", id:"EV_ON_Station_Glow"},
-		{src:"images/Firetruck.png", id:"Firetruck"},
-		{src:"images/GreenCar.png", id:"GreenCar"},
-		{src:"images/House_1_on.png", id:"House_1_on"},
-		{src:"images/House_1_plants.png", id:"House_1_plants"},
-		{src:"images/House_2_on.png", id:"House_2_on"},
-		{src:"images/House_3_on.png", id:"House_3_on"},
-		{src:"images/Houses_Ground.png", id:"Houses_Ground"},
-		{src:"images/Houses_ON_Glow.png", id:"Houses_ON_Glow"},
-		{src:"images/houses_shad_1.png", id:"houses_shad_1"},
-		{src:"images/houses_shad_2.png", id:"houses_shad_2"},
-		{src:"images/houses_shad_3.png", id:"houses_shad_3"},
-		{src:"images/Houses_Trees_4.png", id:"Houses_Trees_4"},
-		{src:"images/Houses_Trees_5.png", id:"Houses_Trees_5"},
-		{src:"images/HVAC_glow_on.png", id:"HVAC_glow_on"},
-		{src:"images/HVAC_ON_BASE.png", id:"HVAC_ON_BASE"},
-		{src:"images/HVAC_TOP_ANIMATION.png", id:"HVAC_TOP_ANIMATION"},
-		{src:"images/Powerlines_OFF_ON.png", id:"Powerlines_OFF_ON"},
-		{src:"images/Powerlines_ON_single_spark.png", id:"Powerlines_ON_single_spark"},
-		{src:"images/street_light_1.png", id:"street_light_1"},
-		{src:"images/street_light_2.png", id:"street_light_2"},
-		{src:"images/street_light_3.png", id:"street_light_3"},
-		{src:"images/street_light_4.png", id:"street_light_4"},
-		{src:"images/street_light_5.png", id:"street_light_5"},
-		{src:"images/SUV.png", id:"SUV"},
-		{src:"images/traffic_light_1.png", id:"traffic_light_1"},
-		{src:"images/traffic_light_2.png", id:"traffic_light_2"},
-		{src:"images/traffic_light_3.png", id:"traffic_light_3"},
-		{src:"images/WW_OFF_Bldg.png", id:"WW_OFF_Bldg"},
-		{src:"images/WW_ON_Glow.png", id:"WW_ON_Glow"}
+		{src:"images/Base.png?1689107519332", id:"Base"},
+		{src:"images/BlueCar.png?1689107519332", id:"BlueCar"},
+		{src:"images/BlueEVCar.png?1689107519332", id:"BlueEVCar"},
+		{src:"images/DAS_Bushes.png?1689107519332", id:"DAS_Bushes"},
+		{src:"images/DAS_OFF_Base.png?1689107519332", id:"DAS_OFF_Base"},
+		{src:"images/DAS_ON_Bldg_top.png?1689107519332", id:"DAS_ON_Bldg_top"},
+		{src:"images/DAS_ON_Glow.png?1689107519332", id:"DAS_ON_Glow"},
+		{src:"images/DAS_ON_Inside.png?1689107519332", id:"DAS_ON_Inside"},
+		{src:"images/DC_base_ON.png?1689107519332", id:"DC_base_ON"},
+		{src:"images/DC_Ground.png?1689107519332", id:"DC_Ground"},
+		{src:"images/DC_ON_bldg_top.png?1689107519332", id:"DC_ON_bldg_top"},
+		{src:"images/DC_ON_Glow.png?1689107519332", id:"DC_ON_Glow"},
+		{src:"images/Emergency_Outside_Front.png?1689107519332", id:"Emergency_Outside_Front"},
+		{src:"images/Emergency_Responder_Ground.png?1689107519332", id:"Emergency_Responder_Ground"},
+		{src:"images/ER_OFF_Bldg.png?1689107519332", id:"ER_OFF_Bldg"},
+		{src:"images/ER_ON_bldg_shadow.png?1689107519332", id:"ER_ON_bldg_shadow"},
+		{src:"images/ER_ON_GLOW.png?1689107519332", id:"ER_ON_GLOW"},
+		{src:"images/ER_ON_RED_GLOW.png?1689107519332", id:"ER_ON_RED_GLOW"},
+		{src:"images/ER_Trees_Back.png?1689107519332", id:"ER_Trees_Back"},
+		{src:"images/EV_Base.png?1689107519332", id:"EV_Base"},
+		{src:"images/EV_ON_Glow.png?1689107519332", id:"EV_ON_Glow"},
+		{src:"images/EV_ON_Shadow.png?1689107519332", id:"EV_ON_Shadow"},
+		{src:"images/EV_ON_Station.png?1689107519332", id:"EV_ON_Station"},
+		{src:"images/EV_ON_Station_Glow.png?1689107519332", id:"EV_ON_Station_Glow"},
+		{src:"images/Firetruck.png?1689107519332", id:"Firetruck"},
+		{src:"images/GreenCar.png?1689107519332", id:"GreenCar"},
+		{src:"images/House_1_on.png?1689107519332", id:"House_1_on"},
+		{src:"images/House_1_plants.png?1689107519332", id:"House_1_plants"},
+		{src:"images/House_2_on.png?1689107519332", id:"House_2_on"},
+		{src:"images/House_3_on.png?1689107519332", id:"House_3_on"},
+		{src:"images/Houses_Ground.png?1689107519332", id:"Houses_Ground"},
+		{src:"images/Houses_ON_Glow.png?1689107519332", id:"Houses_ON_Glow"},
+		{src:"images/houses_shad_1.png?1689107519332", id:"houses_shad_1"},
+		{src:"images/houses_shad_2.png?1689107519332", id:"houses_shad_2"},
+		{src:"images/houses_shad_3.png?1689107519332", id:"houses_shad_3"},
+		{src:"images/Houses_Trees_4.png?1689107519332", id:"Houses_Trees_4"},
+		{src:"images/Houses_Trees_5.png?1689107519332", id:"Houses_Trees_5"},
+		{src:"images/HVAC_glow_on.png?1689107519332", id:"HVAC_glow_on"},
+		{src:"images/HVAC_ON_BASE.png?1689107519332", id:"HVAC_ON_BASE"},
+		{src:"images/HVAC_TOP_ANIMATION.png?1689107519332", id:"HVAC_TOP_ANIMATION"},
+		{src:"images/Powerlines_OFF_ON.png?1689107519332", id:"Powerlines_OFF_ON"},
+		{src:"images/Powerlines_ON_single_spark.png?1689107519332", id:"Powerlines_ON_single_spark"},
+		{src:"images/street_light_1.png?1689107519332", id:"street_light_1"},
+		{src:"images/street_light_2.png?1689107519332", id:"street_light_2"},
+		{src:"images/street_light_3.png?1689107519332", id:"street_light_3"},
+		{src:"images/street_light_4.png?1689107519332", id:"street_light_4"},
+		{src:"images/street_light_5.png?1689107519332", id:"street_light_5"},
+		{src:"images/SUV.png?1689107519332", id:"SUV"},
+		{src:"images/traffic_light_1.png?1689107519332", id:"traffic_light_1"},
+		{src:"images/traffic_light_2.png?1689107519332", id:"traffic_light_2"},
+		{src:"images/traffic_light_3.png?1689107519332", id:"traffic_light_3"},
+		{src:"images/WW_OFF_Bldg.png?1689107519332", id:"WW_OFF_Bldg"},
+		{src:"images/WW_ON_Glow.png?1689107519332", id:"WW_ON_Glow"}
 	],
 	preloads: []
 };
