@@ -1758,7 +1758,7 @@ if (reversed == null) { reversed = false; }
 	// WW_ON_waves
 	this.ww_on_anim = new lib.radial_circles_multi_mc();
 	this.ww_on_anim.name = "ww_on_anim";
-	this.ww_on_anim.setTransform(66.3,89.2,1,1,0,0,0,-30.5,-14.1);
+	this.ww_on_anim.setTransform(96.8,103.3);
 	this.ww_on_anim._off = true;
 
 	this.timeline.addTween(cjs.Tween.get(this.ww_on_anim).wait(1).to({_off:false},0).wait(1));
@@ -1769,12 +1769,12 @@ if (reversed == null) { reversed = false; }
 	this.timeline.addTween(cjs.Tween.get(this.instance).wait(2));
 
 	// WW_ON_Glow_png
-	this.instance_1 = new lib.ww_on_glow();
-	this.instance_1.setTransform(298,462,1,1,0,0,0,676,565);
-	this.instance_1._off = true;
-	new cjs.ButtonHelper(this.instance_1, 0, 1, 1);
+	this.ww_on_glow = new lib.ww_on_glow();
+	this.ww_on_glow.name = "ww_on_glow";
+	this.ww_on_glow.setTransform(298,462,1,1,0,0,0,676,565);
+	this.ww_on_glow._off = true;
 
-	this.timeline.addTween(cjs.Tween.get(this.instance_1).wait(1).to({_off:false},0).wait(1));
+	this.timeline.addTween(cjs.Tween.get(this.ww_on_glow).wait(1).to({_off:false},0).wait(1));
 
 	this._renderFirstFrame();
 
@@ -1806,6 +1806,8 @@ if (reversed == null) { reversed = false; }
 		}
 		var root = this;
 		
+		var selectedIndex = -1;  // -1=nothing selected; 0=das, 1=ev, 2=houses, 3=hvac, 4=er, 5=dc, 6=ww
+		
 		root.main = function () {
 			document.body.style.backgroundColor = lib.properties.color;
 			stage.enableMouseOver();
@@ -1821,63 +1823,82 @@ if (reversed == null) { reversed = false; }
 			//das
 			root.das_hit_btn.cursor = "default"; // default cursor, not finger
 			root.das_hit_btn.on("mouseover", function (e) {
+				root.selectedIndex=0;		//set selection
 				root.passthroughTween(root.das_mc.das_on_top_anim_mc, root.das_mc.das_on_top_anim_mc.totalFrames - 1, root.das_mc.das_on_glow)
+				
+				//console.log("got here");
 			});
 			root.das_hit_btn.on("mouseout", function (e) {
+				root.selectedIndex=-1;		//clear selection
 				root.passthroughTween(root.das_mc.das_on_top_anim_mc, 0, root.das_mc.das_on_glow)
+				
 			});
 		
 			//ev
 			root.ev_hit_btn.cursor = "default"; // default cursor, not finger
 			root.ev_hit_btn.on("mouseover", function (e) {
+				root.selectedIndex=1;	//set selection
 				root.passthroughTween(root.ev_mc.ev_on_top_anim, root.ev_mc.ev_on_top_anim.totalFrames - 1, root.ev_mc.ev_on_glow)
+				
 			});
 			root.ev_hit_btn.on("mouseout", function (e) {
+				root.selectedIndex=-1;	//clear selection
 				root.passthroughTween(root.ev_mc.ev_on_top_anim, 0, root.ev_mc.ev_on_glow)
+				
 			});
 		
 			//houses
 			root.houses_hit_btn.cursor = "default"; // default cursor, not finger
 			root.houses_hit_btn.on("mouseover", function (e) {
+				root.selectedIndex=2;	//set selection
 				root.passthroughTween(root.houses_mc.houses_on_anim, root.houses_mc.houses_on_anim.totalFrames - 1, root.houses_mc.houses_on_glow)
 			});
 			root.houses_hit_btn.on("mouseout", function (e) {
+				root.selectedIndex=-1;	//clear selection
 				root.passthroughTween(root.houses_mc.houses_on_anim, 0, root.houses_mc.houses_on_glow)
-			});
-			
-			//data center
-			root.dc_hit_btn.cursor = "default"; // default cursor, not finger
-			root.dc_hit_btn.on("mouseover", function (e) {
-				root.passthroughTween(root.dc_mc.dc_on_top_anim, root.dc_mc.dc_on_top_anim.totalFrames - 1, root.dc_mc.dc_on_glow)
-			});
-			root.dc_hit_btn.on("mouseout", function (e) {
-				root.passthroughTween(root.dc_mc.dc_on_top_anim, 0, root.dc_mc.dc_on_glow)
-			});
-		
-			//er
-			root.er_hit_btn.cursor = "default"; // default cursor, not finger
-			root.er_hit_btn.on("mouseover", function (e) {
-				root.passthroughTween(root.er_mc.er_on_top_anim, root.er_mc.er_on_top_anim.totalFrames - 1, root.er_mc.er_on_glow)
-			});
-			root.er_hit_btn.on("mouseout", function (e) {
-				root.passthroughTween(root.er_mc.er_on_top_anim, 0, root.er_mc.er_on_glow)
 			});
 		
 			//hvac
 			root.hvac_hit_btn.cursor = "default"; // default cursor, not finger
 			root.hvac_hit_btn.on("mouseover", function (e) {
+				root.selectedIndex=3;	//set selection
 				root.passthroughTween(root.hvac_mc.hvac_on_top_anim, root.hvac_mc.hvac_on_top_anim.totalFrames - 1, root.hvac_mc.hvac_on_glow)
 			});
 			root.hvac_hit_btn.on("mouseout", function (e) {
+				root.selectedIndex=-1;	//clear selection
 				root.passthroughTween(root.hvac_mc.hvac_on_top_anim, 0, root.hvac_mc.hvac_on_glow)
+			});
+		
+			//er
+			root.er_hit_btn.cursor = "default"; // default cursor, not finger
+			root.er_hit_btn.on("mouseover", function (e) {
+				root.selectedIndex=4;	//set selection
+				root.passthroughTween(root.er_mc.er_on_top_anim, root.er_mc.er_on_top_anim.totalFrames - 1, root.er_mc.er_on_glow)
+			});
+			root.er_hit_btn.on("mouseout", function (e) {
+				root.selectedIndex=-1;	//clear selection
+				root.passthroughTween(root.er_mc.er_on_top_anim, 0, root.er_mc.er_on_glow)
+			});
+		
+			//data center
+			root.dc_hit_btn.cursor = "default"; // default cursor, not finger
+			root.dc_hit_btn.on("mouseover", function (e) {
+				root.selectedIndex=5;	//set selection
+				root.passthroughTween(root.dc_mc.dc_on_top_anim, root.dc_mc.dc_on_top_anim.totalFrames - 1, root.dc_mc.dc_on_glow)
+			});
+			root.dc_hit_btn.on("mouseout", function (e) {
+				root.selectedIndex=-1;	//clear selection
+				root.passthroughTween(root.dc_mc.dc_on_top_anim, 0, root.dc_mc.dc_on_glow)
 			});
 		
 			//ww
 			root.ww_hit_btn.cursor = "default"; // default cursor, not finger
 			root.ww_hit_btn.on("mouseover", function (e) {
-				root.passthroughTween(root.ww_mc, root.ww_mc.totalFrames - 1, root.ww_mc.ww_on_glow)
+				root.selectedIndex=6;	//set selection
+				root.passthroughTween(root.ww_mc, root.ww_mc.totalFrames - 1, root.ww_mc.ww_on_glow)  //also works with cascaded animations since "end" frame is next frame to trigger anims
 			});
 			root.ww_hit_btn.on("mouseout", function (e) {
+				root.selectedIndex=-1;	//clear selection
 				root.passthroughTween(root.ww_mc, 0, root.ww_mc.ww_on_glow)
 			});
 		
@@ -1898,29 +1919,19 @@ if (reversed == null) { reversed = false; }
 		
 		};
 		
-		
-		
-		/*  //direct object hover/tween
-		root.hoverTween = function(target, destination, ease)
-		{
-			var duration = (Math.abs(destination - target.currentFrame) / lib.properties.fps) * 1000;
-			
-			target.frame = target.currentFrame;
-				
-			createjs.Tween.get(target, { override: true }).to({ frame: destination }, duration, ease).on("change", function(e)
-			{
-				var target = e.currentTarget.target;		
-				target.gotoAndStop(Math.round(target.frame));
-			});
-		};
-		*/
-		
 		root.toggleGlow = function(obj) {
-			//console.log("got here");
-			if(obj.visible==true)
-				obj.visible=false;
+			//console.log("toggleGlow() called with input arg: "+obj);
+		
+			if(obj.visible==true){  //already glow is show, so hide glow
+				if(root.selectedIndex==-1)  //check for an invalid/cleared selection
+					obj.visible=false;	//hide glow
+					//console.log("selected index= " + root.selectedIndex);
+			}
 			else
-				obj.visible=true;
+				if(root.selectedIndex>=0){  //check for a valid selection
+					obj.visible=true;
+					//console.log("showselected index= " + root.selectedIndex);
+				}
 		}
 		
 		//indirect object hover/tween
@@ -1951,50 +1962,50 @@ if (reversed == null) { reversed = false; }
 
 	// street_lights_fg
 	this.instance = new lib.street_light_4();
-	this.instance.setTransform(289,583,0.391,0.391);
+	this.instance.setTransform(329,608,0.391,0.391);
 
 	this.instance_1 = new lib.street_light_3();
-	this.instance_1.setTransform(477.95,681,0.391,0.391,0,0,180);
+	this.instance_1.setTransform(517.95,706,0.391,0.391,0,0,180);
 
 	this.instance_2 = new lib.street_light_3();
-	this.instance_2.setTransform(655,581,0.391,0.391);
+	this.instance_2.setTransform(695,606,0.391,0.391);
 
 	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.instance_2},{t:this.instance_1},{t:this.instance}]}).wait(1));
 
 	// hit_areas
 	this.hvac_hit_btn = new lib.base_btn();
 	this.hvac_hit_btn.name = "hvac_hit_btn";
-	this.hvac_hit_btn.setTransform(592.2,238.75,0.8456,0.8689,0,0,0,104,186);
+	this.hvac_hit_btn.setTransform(632.2,263.75,0.8456,0.8689,0,0,0,104,186);
 	new cjs.ButtonHelper(this.hvac_hit_btn, 0, 1, 2, false, new lib.base_btn(), 3);
 
 	this.er_hit_btn = new lib.base_btn();
 	this.er_hit_btn.name = "er_hit_btn";
-	this.er_hit_btn.setTransform(546.65,335.6,0.6479,0.6408,0,0,0,302.6,187.2);
+	this.er_hit_btn.setTransform(586.65,360.6,0.6479,0.6408,0,0,0,302.6,187.2);
 	new cjs.ButtonHelper(this.er_hit_btn, 0, 1, 2, false, new lib.base_btn(), 3);
 
 	this.ww_hit_btn = new lib.base_btn();
 	this.ww_hit_btn.name = "ww_hit_btn";
-	this.ww_hit_btn.setTransform(228.55,519.15,0.61,0.6408,0,0,0,302.4,187.2);
+	this.ww_hit_btn.setTransform(263,542.05,0.5974,0.6064,0,0,0,302.6,187.3);
 	new cjs.ButtonHelper(this.ww_hit_btn, 0, 1, 2, false, new lib.base_btn(), 3);
 
 	this.dc_hit_btn = new lib.base_btn();
 	this.dc_hit_btn.name = "dc_hit_btn";
-	this.dc_hit_btn.setTransform(394.15,437.05,0.7562,0.7327,0,0,0,302.5,187);
+	this.dc_hit_btn.setTransform(421.2,454.05,0.6369,0.6309,0,0,0,302.6,187.1);
 	new cjs.ButtonHelper(this.dc_hit_btn, 0, 1, 2, false, new lib.base_btn(), 3);
 
 	this.houses_hit_btn = new lib.base_btn();
 	this.houses_hit_btn.name = "houses_hit_btn";
-	this.houses_hit_btn.setTransform(1064,393.9,0.9221,0.9534,0,0,0,302.3,186.8);
+	this.houses_hit_btn.setTransform(1104,418.9,0.9221,0.9534,0,0,0,302.3,186.8);
 	new cjs.ButtonHelper(this.houses_hit_btn, 0, 1, 2, false, new lib.base_btn(), 3);
 
 	this.ev_hit_btn = new lib.base_btn();
 	this.ev_hit_btn.name = "ev_hit_btn";
-	this.ev_hit_btn.setTransform(840.2,526.9,0.9221,0.9534,0,0,0,302.3,186.8);
+	this.ev_hit_btn.setTransform(880.2,551.9,0.9221,0.9534,0,0,0,302.3,186.8);
 	new cjs.ButtonHelper(this.ev_hit_btn, 0, 1, 2, false, new lib.base_btn(), 3);
 
 	this.das_hit_btn = new lib.base_btn();
 	this.das_hit_btn.name = "das_hit_btn";
-	this.das_hit_btn.setTransform(267,498.5);
+	this.das_hit_btn.setTransform(307,523.5);
 	new cjs.ButtonHelper(this.das_hit_btn, 0, 1, 2, false, new lib.base_btn(), 3);
 
 	this.timeline.addTween(cjs.Tween.get({}).to({state:[{t:this.das_hit_btn},{t:this.ev_hit_btn},{t:this.houses_hit_btn},{t:this.dc_hit_btn},{t:this.ww_hit_btn},{t:this.er_hit_btn},{t:this.hvac_hit_btn}]}).wait(1));
@@ -2002,143 +2013,143 @@ if (reversed == null) { reversed = false; }
 	// DAS
 	this.das_mc = new lib.das_mc();
 	this.das_mc.name = "das_mc";
-	this.das_mc.setTransform(474.85,622.5,0.391,0.391,0,0,0,888,678);
+	this.das_mc.setTransform(514.85,647.5,0.391,0.391,0,0,0,888,678);
 
 	this.timeline.addTween(cjs.Tween.get(this.das_mc).wait(1));
 
 	// street_lights
 	this.instance_3 = new lib.street_lights_mc();
-	this.instance_3.setTransform(645.5,493,0.391,0.391,0,0,0,25.6,63.1);
+	this.instance_3.setTransform(685.5,518,0.391,0.391,0,0,0,25.6,63.1);
 
 	this.timeline.addTween(cjs.Tween.get(this.instance_3).wait(1));
 
 	// vehicles
 	this.instance_4 = new lib.vehicles_mc();
-	this.instance_4.setTransform(610,432.45,0.391,0.391,0,0,0,100,80);
+	this.instance_4.setTransform(650,457.45,0.391,0.391,0,0,0,100,80);
 
 	this.timeline.addTween(cjs.Tween.get(this.instance_4).wait(1));
 
 	// EV
 	this.ev_mc = new lib.ev_station_mc();
 	this.ev_mc.name = "ev_mc";
-	this.ev_mc.setTransform(744,471.95,0.391,0.391,0,0,0,818.1,645.4);
+	this.ev_mc.setTransform(784,496.95,0.391,0.391,0,0,0,818.1,645.4);
 
 	this.timeline.addTween(cjs.Tween.get(this.ev_mc).wait(1));
 
 	// Houses
 	this.houses_mc = new lib.houses_mc();
 	this.houses_mc.name = "houses_mc";
-	this.houses_mc.setTransform(977.5,335,0.391,0.391,0,0,0,865.5,665);
+	this.houses_mc.setTransform(1017.5,360,0.391,0.391,0,0,0,865.5,665);
 
 	this.timeline.addTween(cjs.Tween.get(this.houses_mc).wait(1));
 
 	// WW
 	this.ww_mc = new lib.wireless_wireline_mc();
 	this.ww_mc.name = "ww_mc";
-	this.ww_mc.setTransform(171.45,425.5,0.391,0.391,0,0,0,298.1,324.6);
+	this.ww_mc.setTransform(211.45,450.5,0.391,0.391,0,0,0,298.1,324.6);
 
 	this.timeline.addTween(cjs.Tween.get(this.ww_mc).wait(1));
 
 	// DC
 	this.dc_mc = new lib.data_center_mc();
 	this.dc_mc.name = "dc_mc";
-	this.dc_mc.setTransform(321.4,396.35,0.391,0.391,0,0,0,731,581.5);
+	this.dc_mc.setTransform(361.4,421.35,0.391,0.391,0,0,0,731,581.5);
 
 	this.timeline.addTween(cjs.Tween.get(this.dc_mc).wait(1));
 
 	// ER
 	this.er_mc = new lib.Emergency_Responder_mc();
 	this.er_mc.name = "er_mc";
-	this.er_mc.setTransform(487.1,274.7,1,1,0,0,0,134.1,100.7);
+	this.er_mc.setTransform(527.1,299.7,1,1,0,0,0,134.1,100.7);
 
 	this.timeline.addTween(cjs.Tween.get(this.er_mc).wait(1));
 
 	// HVAC
 	this.hvac_mc = new lib.hvac_mc();
 	this.hvac_mc.name = "hvac_mc";
-	this.hvac_mc.setTransform(678.35,146.65,0.391,0.391,0,0,0,700.6,650.4);
+	this.hvac_mc.setTransform(718.35,171.65,0.391,0.391,0,0,0,700.6,650.4);
 
 	this.timeline.addTween(cjs.Tween.get(this.hvac_mc).wait(1));
 
 	// Powerlines
 	this.powerlines_mc = new lib.Powerlines_mc();
 	this.powerlines_mc.name = "powerlines_mc";
-	this.powerlines_mc.setTransform(617.1,232.9,0.391,0.391,0,0,0,1152.9,450.1);
+	this.powerlines_mc.setTransform(657.1,257.9,0.391,0.391,0,0,0,1152.9,450.1);
 
 	this.timeline.addTween(cjs.Tween.get(this.powerlines_mc).wait(1));
 
 	// Base
 	this.instance_5 = new lib.Base();
-	this.instance_5.setTransform(39,74,0.7812,0.7812);
+	this.instance_5.setTransform(79,99,0.7812,0.7812);
 
 	this.timeline.addTween(cjs.Tween.get(this.instance_5).wait(1));
 
 	this._renderFirstFrame();
 
 }).prototype = p = new lib.AnMovieClip();
-p.nominalBounds = new cjs.Rectangle(552.6,292,763.3000000000001,595.6);
+p.nominalBounds = new cjs.Rectangle(632.6,342,723.3000000000001,570.6);
 // library properties:
 lib.properties = {
 	id: '148D7EC74804F14580EA7507AFAB2A29',
-	width: 1200,
-	height: 800,
+	width: 1280,
+	height: 850,
 	fps: 60,
 	color: "#070935",
 	opacity: 1.00,
 	manifest: [
-		{src:"images/Base.png?1689017742967", id:"Base"},
-		{src:"images/BlueCar.png?1689017742967", id:"BlueCar"},
-		{src:"images/BlueEVCar.png?1689017742967", id:"BlueEVCar"},
-		{src:"images/DAS_Bushes.png?1689017742967", id:"DAS_Bushes"},
-		{src:"images/DAS_OFF_Base.png?1689017742967", id:"DAS_OFF_Base"},
-		{src:"images/DAS_ON_Bldg_top.png?1689017742967", id:"DAS_ON_Bldg_top"},
-		{src:"images/DAS_ON_Glow.png?1689017742967", id:"DAS_ON_Glow"},
-		{src:"images/DAS_ON_Inside.png?1689017742967", id:"DAS_ON_Inside"},
-		{src:"images/DC_base_ON.png?1689017742967", id:"DC_base_ON"},
-		{src:"images/DC_Ground.png?1689017742967", id:"DC_Ground"},
-		{src:"images/DC_ON_bldg_top.png?1689017742967", id:"DC_ON_bldg_top"},
-		{src:"images/DC_ON_Glow.png?1689017742967", id:"DC_ON_Glow"},
-		{src:"images/Emergency_Outside_Front.png?1689017742967", id:"Emergency_Outside_Front"},
-		{src:"images/Emergency_Responder_Ground.png?1689017742967", id:"Emergency_Responder_Ground"},
-		{src:"images/ER_OFF_Bldg.png?1689017742967", id:"ER_OFF_Bldg"},
-		{src:"images/ER_ON_bldg_shadow.png?1689017742967", id:"ER_ON_bldg_shadow"},
-		{src:"images/ER_ON_GLOW.png?1689017742967", id:"ER_ON_GLOW"},
-		{src:"images/ER_ON_RED_GLOW.png?1689017742967", id:"ER_ON_RED_GLOW"},
-		{src:"images/ER_Trees_Back.png?1689017742967", id:"ER_Trees_Back"},
-		{src:"images/EV_Base.png?1689017742967", id:"EV_Base"},
-		{src:"images/EV_ON_Glow.png?1689017742967", id:"EV_ON_Glow"},
-		{src:"images/EV_ON_Shadow.png?1689017742967", id:"EV_ON_Shadow"},
-		{src:"images/EV_ON_Station.png?1689017742967", id:"EV_ON_Station"},
-		{src:"images/EV_ON_Station_Glow.png?1689017742967", id:"EV_ON_Station_Glow"},
-		{src:"images/Firetruck.png?1689017742967", id:"Firetruck"},
-		{src:"images/GreenCar.png?1689017742967", id:"GreenCar"},
-		{src:"images/House_1_on.png?1689017742967", id:"House_1_on"},
-		{src:"images/House_1_plants.png?1689017742967", id:"House_1_plants"},
-		{src:"images/House_2_on.png?1689017742967", id:"House_2_on"},
-		{src:"images/House_3_on.png?1689017742967", id:"House_3_on"},
-		{src:"images/Houses_Ground.png?1689017742967", id:"Houses_Ground"},
-		{src:"images/Houses_ON_Glow.png?1689017742967", id:"Houses_ON_Glow"},
-		{src:"images/houses_shad_1.png?1689017742967", id:"houses_shad_1"},
-		{src:"images/houses_shad_2.png?1689017742967", id:"houses_shad_2"},
-		{src:"images/houses_shad_3.png?1689017742967", id:"houses_shad_3"},
-		{src:"images/Houses_Trees_4.png?1689017742967", id:"Houses_Trees_4"},
-		{src:"images/Houses_Trees_5.png?1689017742967", id:"Houses_Trees_5"},
-		{src:"images/HVAC_glow_on.png?1689017742967", id:"HVAC_glow_on"},
-		{src:"images/HVAC_ON_BASE.png?1689017742967", id:"HVAC_ON_BASE"},
-		{src:"images/HVAC_TOP_ANIMATION.png?1689017742967", id:"HVAC_TOP_ANIMATION"},
-		{src:"images/Powerlines_OFF_ON.png?1689017742967", id:"Powerlines_OFF_ON"},
-		{src:"images/Powerlines_ON_single_spark.png?1689017742967", id:"Powerlines_ON_single_spark"},
-		{src:"images/street_light_1.png?1689017742967", id:"street_light_1"},
-		{src:"images/street_light_2.png?1689017742967", id:"street_light_2"},
-		{src:"images/street_light_3.png?1689017742967", id:"street_light_3"},
-		{src:"images/street_light_4.png?1689017742967", id:"street_light_4"},
-		{src:"images/street_light_5.png?1689017742967", id:"street_light_5"},
-		{src:"images/SUV.png?1689017742967", id:"SUV"},
-		{src:"images/traffic_light_1.png?1689017742967", id:"traffic_light_1"},
-		{src:"images/traffic_light_2.png?1689017742967", id:"traffic_light_2"},
-		{src:"images/traffic_light_3.png?1689017742967", id:"traffic_light_3"},
-		{src:"images/WW_OFF_Bldg.png?1689017742967", id:"WW_OFF_Bldg"},
-		{src:"images/WW_ON_Glow.png?1689017742967", id:"WW_ON_Glow"}
+		{src:"images/Base.png?1689103247956", id:"Base"},
+		{src:"images/BlueCar.png?1689103247956", id:"BlueCar"},
+		{src:"images/BlueEVCar.png?1689103247956", id:"BlueEVCar"},
+		{src:"images/DAS_Bushes.png?1689103247956", id:"DAS_Bushes"},
+		{src:"images/DAS_OFF_Base.png?1689103247956", id:"DAS_OFF_Base"},
+		{src:"images/DAS_ON_Bldg_top.png?1689103247956", id:"DAS_ON_Bldg_top"},
+		{src:"images/DAS_ON_Glow.png?1689103247956", id:"DAS_ON_Glow"},
+		{src:"images/DAS_ON_Inside.png?1689103247956", id:"DAS_ON_Inside"},
+		{src:"images/DC_base_ON.png?1689103247956", id:"DC_base_ON"},
+		{src:"images/DC_Ground.png?1689103247956", id:"DC_Ground"},
+		{src:"images/DC_ON_bldg_top.png?1689103247956", id:"DC_ON_bldg_top"},
+		{src:"images/DC_ON_Glow.png?1689103247956", id:"DC_ON_Glow"},
+		{src:"images/Emergency_Outside_Front.png?1689103247956", id:"Emergency_Outside_Front"},
+		{src:"images/Emergency_Responder_Ground.png?1689103247956", id:"Emergency_Responder_Ground"},
+		{src:"images/ER_OFF_Bldg.png?1689103247956", id:"ER_OFF_Bldg"},
+		{src:"images/ER_ON_bldg_shadow.png?1689103247956", id:"ER_ON_bldg_shadow"},
+		{src:"images/ER_ON_GLOW.png?1689103247956", id:"ER_ON_GLOW"},
+		{src:"images/ER_ON_RED_GLOW.png?1689103247956", id:"ER_ON_RED_GLOW"},
+		{src:"images/ER_Trees_Back.png?1689103247956", id:"ER_Trees_Back"},
+		{src:"images/EV_Base.png?1689103247956", id:"EV_Base"},
+		{src:"images/EV_ON_Glow.png?1689103247956", id:"EV_ON_Glow"},
+		{src:"images/EV_ON_Shadow.png?1689103247956", id:"EV_ON_Shadow"},
+		{src:"images/EV_ON_Station.png?1689103247956", id:"EV_ON_Station"},
+		{src:"images/EV_ON_Station_Glow.png?1689103247957", id:"EV_ON_Station_Glow"},
+		{src:"images/Firetruck.png?1689103247958", id:"Firetruck"},
+		{src:"images/GreenCar.png?1689103247958", id:"GreenCar"},
+		{src:"images/House_1_on.png?1689103247958", id:"House_1_on"},
+		{src:"images/House_1_plants.png?1689103247958", id:"House_1_plants"},
+		{src:"images/House_2_on.png?1689103247958", id:"House_2_on"},
+		{src:"images/House_3_on.png?1689103247958", id:"House_3_on"},
+		{src:"images/Houses_Ground.png?1689103247958", id:"Houses_Ground"},
+		{src:"images/Houses_ON_Glow.png?1689103247958", id:"Houses_ON_Glow"},
+		{src:"images/houses_shad_1.png?1689103247958", id:"houses_shad_1"},
+		{src:"images/houses_shad_2.png?1689103247958", id:"houses_shad_2"},
+		{src:"images/houses_shad_3.png?1689103247958", id:"houses_shad_3"},
+		{src:"images/Houses_Trees_4.png?1689103247958", id:"Houses_Trees_4"},
+		{src:"images/Houses_Trees_5.png?1689103247958", id:"Houses_Trees_5"},
+		{src:"images/HVAC_glow_on.png?1689103247958", id:"HVAC_glow_on"},
+		{src:"images/HVAC_ON_BASE.png?1689103247958", id:"HVAC_ON_BASE"},
+		{src:"images/HVAC_TOP_ANIMATION.png?1689103247958", id:"HVAC_TOP_ANIMATION"},
+		{src:"images/Powerlines_OFF_ON.png?1689103247958", id:"Powerlines_OFF_ON"},
+		{src:"images/Powerlines_ON_single_spark.png?1689103247958", id:"Powerlines_ON_single_spark"},
+		{src:"images/street_light_1.png?1689103247958", id:"street_light_1"},
+		{src:"images/street_light_2.png?1689103247958", id:"street_light_2"},
+		{src:"images/street_light_3.png?1689103247958", id:"street_light_3"},
+		{src:"images/street_light_4.png?1689103247958", id:"street_light_4"},
+		{src:"images/street_light_5.png?1689103247958", id:"street_light_5"},
+		{src:"images/SUV.png?1689103247958", id:"SUV"},
+		{src:"images/traffic_light_1.png?1689103247958", id:"traffic_light_1"},
+		{src:"images/traffic_light_2.png?1689103247958", id:"traffic_light_2"},
+		{src:"images/traffic_light_3.png?1689103247958", id:"traffic_light_3"},
+		{src:"images/WW_OFF_Bldg.png?1689103247958", id:"WW_OFF_Bldg"},
+		{src:"images/WW_ON_Glow.png?1689103247958", id:"WW_ON_Glow"}
 	],
 	preloads: []
 };
